@@ -1,7 +1,6 @@
 package usecase
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/fabianogoes/dev-books-api/application/domain/port/output/repository"
@@ -19,7 +18,7 @@ func NewUpdateBookUseCase(r repository.BaseRepository) *UpdateBookUseCase {
 func (buc *UpdateBookUseCase) Update(id uuid.UUID, title string, description string, author string) error {
 	book := buc.repository.FindById(id.String())
 	if book == nil {
-		return errors.New(fmt.Sprintf("book %s not found", title))
+		return fmt.Errorf(fmt.Sprintf("book %s not found", title))
 	}
 
 	book.Title = title
