@@ -58,7 +58,7 @@ func (bc *bookController) List(c *gin.Context) {
 func (bc *bookController) FindById(c *gin.Context) {
 	id, err := uuid.FromString(c.Param("id"))
 	if err != nil {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id as uuid %v", err)})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id, %v", err)})
 		return
 	}
 
@@ -74,7 +74,7 @@ func (bc *bookController) Update(c *gin.Context) {
 	var err error
 	id, err := uuid.FromString(c.Param("id"))
 	if err != nil {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id as uuid %v", err)})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id, %v", err)})
 		return
 	}
 
@@ -96,7 +96,7 @@ func (bc *bookController) Update(c *gin.Context) {
 func (bc *bookController) Delete(c *gin.Context) {
 	id, err := uuid.FromString(c.Param("id"))
 	if err != nil {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id as uuid %v", err)})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id, %v", err)})
 		return
 	}
 
