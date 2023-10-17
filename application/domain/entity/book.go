@@ -1,6 +1,6 @@
 package entity
 
-import "github.com/google/uuid"
+import uuid "github.com/satori/go.uuid"
 
 type Book struct {
 	ID          uuid.UUID
@@ -10,5 +10,5 @@ type Book struct {
 }
 
 func NewBook(title string, description string, author string) *Book {
-	return &Book{ID: uuid.New(), Title: title, Description: description, Author: author}
+	return &Book{ID: uuid.NewV4(), Title: title, Description: description, Author: author}
 }

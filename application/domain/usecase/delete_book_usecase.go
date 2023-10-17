@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/fabianogoes/dev-books-api/application/domain/port/output/repository"
-	"github.com/google/uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 type DeleteBookUseCase struct {

@@ -7,7 +7,7 @@ import (
 	"github.com/fabianogoes/dev-books-api/adapter/input/controller/dto"
 	"github.com/fabianogoes/dev-books-api/application/domain/usecase"
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
+	uuid "github.com/satori/go.uuid"
 )
 
 type bookController struct {
@@ -56,7 +56,11 @@ func (bc *bookController) List(c *gin.Context) {
 }
 
 func (bc *bookController) FindById(c *gin.Context) {
-	id := uuid.MustParse(c.Param("id"))
+	id, err := uuid.FromString(c.Param("id"))
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		return
+	}
 
 	if book := bc.findBookUseCase.FindById(id); book != nil {
 		c.IndentedJSON(http.StatusOK, bc.listBookUseCase.List())
@@ -67,9 +71,13 @@ func (bc *bookController) FindById(c *gin.Context) {
 }
 
 func (bc *bookController) Update(c *gin.Context) {
-	id := uuid.MustParse(c.Param("id"))
-
 	var err error
+	id, err := uuid.FromString(c.Param("id"))
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		return
+	}
+
 	var payload dto.UpdateBookRequest
 
 	if err = c.BindJSON(&payload); err != nil {
@@ -86,7 +94,11 @@ func (bc *bookController) Update(c *gin.Context) {
 }
 
 func (bc *bookController) Delete(c *gin.Context) {
-	id := uuid.MustParse(c.Param("id"))
+	id, err := uuid.FromString(c.Param("id"))
+	if err != nil {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		return
+	}
 
 	if b := bc.findBookUseCase.FindById(id); b == nil {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": fmt.Sprintf("Book %s not found!", id)})
