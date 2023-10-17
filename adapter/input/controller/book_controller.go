@@ -39,7 +39,7 @@ func (bc *bookController) Create(c *gin.Context) {
 	var payload dto.CreateBookRequest
 
 	if err = c.BindJSON(&payload); err != nil {
-		c.IndentedJSON(http.StatusBadRequest, err)
+		c.IndentedJSON(http.StatusBadRequest, fmt.Sprintf("error on parse payload %v", err))
 		return
 	}
 
@@ -58,7 +58,7 @@ func (bc *bookController) List(c *gin.Context) {
 func (bc *bookController) FindById(c *gin.Context) {
 	id, err := uuid.FromString(c.Param("id"))
 	if err != nil {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id as uuid %v", err)})
 		return
 	}
 
@@ -74,14 +74,14 @@ func (bc *bookController) Update(c *gin.Context) {
 	var err error
 	id, err := uuid.FromString(c.Param("id"))
 	if err != nil {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id as uuid %v", err)})
 		return
 	}
 
 	var payload dto.UpdateBookRequest
 
 	if err = c.BindJSON(&payload); err != nil {
-		c.IndentedJSON(http.StatusBadRequest, err)
+		c.IndentedJSON(http.StatusBadRequest, fmt.Sprintf("error on parse payload %v", err))
 		return
 	}
 
@@ -96,7 +96,7 @@ func (bc *bookController) Update(c *gin.Context) {
 func (bc *bookController) Delete(c *gin.Context) {
 	id, err := uuid.FromString(c.Param("id"))
 	if err != nil {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": err})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("invalid id as uuid %v", err)})
 		return
 	}
 
