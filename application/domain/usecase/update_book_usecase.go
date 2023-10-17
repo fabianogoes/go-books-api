@@ -1,0 +1,29 @@
+package usecase
+
+import (
+	"errors"
+	"fmt"
+
+	"github.com/fabianogoes/dev-books-api/application/domain/port/output/repository"
+	"github.com/google/uuid"
+)
+
+type UpdateBookUseCase struct {
+	repository repository.BaseRepository
+}
+
+func NewUpdateBookUseCase(r repository.BaseRepository) *UpdateBookUseCase {
+	return &UpdateBookUseCase{repository: r}
+}
+
+func (buc *UpdateBookUseCase) Update(id uuid.UUID, title string, description string, author string) error {
+	book := buc.repository.FindById(id.String())
+	if book == nil {
+		return errors.New(fmt.Sprintf("book %s not found", title))
+	}
+
+	book.Title = title
+	book.Description = description
+	book.Author = author
+	return buc.repository.Update(book)
+}
