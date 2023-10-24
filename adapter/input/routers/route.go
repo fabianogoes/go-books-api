@@ -7,13 +7,14 @@ import (
 	"github.com/fabianogoes/dev-books-api/adapter/output/database"
 	"github.com/fabianogoes/dev-books-api/application/domain/usecase"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-func InitRoutes(router *gin.Engine) {
+func Init(router *gin.Engine, DB *gorm.DB) {
 	router.GET("/", welcome)
 	router.GET("/health", health)
 
-	repository := database.NewInMemoryRepository()
+	repository := database.NewPostgresRepository(DB)
 	createBookUseCase := usecase.NewCreateBookUseCase(repository)
 	listBookUseCase := usecase.NewListBookUseCase(repository)
 	findBookUseCase := usecase.NewFindBookUseCase(repository)
