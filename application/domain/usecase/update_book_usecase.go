@@ -16,11 +16,12 @@ func NewUpdateBookUseCase(r repository.BaseRepository) *UpdateBookUseCase {
 }
 
 func (buc *UpdateBookUseCase) Update(id uuid.UUID, title string, description string, author string) error {
-	book := buc.repository.FindById(id.String())
+	book := buc.repository.FindById(id)
 	if book == nil {
 		return fmt.Errorf(fmt.Sprintf("book %s not found", title))
 	}
 
+	book.ID = id
 	book.Title = title
 	book.Description = description
 	book.Author = author
