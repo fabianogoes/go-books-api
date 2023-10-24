@@ -6,7 +6,7 @@ services:
     image: postgres:12.8
     restart: always
     environment:
-      - POSTGRES_USER=devnapratica_user
+      - POSTGRES_USER=user
       - POSTGRES_PASSWORD=pass
       - POSTGRES_DB=devnapratica
     ports:
