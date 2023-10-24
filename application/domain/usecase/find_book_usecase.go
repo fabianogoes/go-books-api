@@ -15,5 +15,5 @@ func NewFindBookUseCase(r repository.BaseRepository) *FindBookUseCase {
 }
 
 func (buc *FindBookUseCase) FindById(id uuid.UUID) *entity.Book {
-	return buc.repository.FindById(id.String())
+	return buc.repository.FindById(id)
 }

@@ -17,9 +17,9 @@ func NewDeleteBookUseCase(r repository.BaseRepository) *DeleteBookUseCase {
 }
 
 func (buc *DeleteBookUseCase) Delete(id uuid.UUID) error {
-	if book := buc.repository.FindById(id.String()); book == nil {
+	if book := buc.repository.FindById(id); book == nil {
 		return errors.New(fmt.Sprintf("book %s not found", id))
 	}
 
-	return buc.repository.Delete(id.String())
+	return buc.repository.Delete(id)
 }
