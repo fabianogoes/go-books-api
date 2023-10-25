@@ -16,6 +16,7 @@ E usar a Plataform PaaS [Render][0] para fazer o deploy.
 - [ ] Implementar Testes integrados.
 - [ ] Implementar Documentação com Open API. 
 - [x] Usar GitHub Actions para fazer o Build e Test.
+- [ ] Adicionar logs usando [slog](https://go.dev/blog/slog).
 
 ## Stack
 - [Golang][1]
