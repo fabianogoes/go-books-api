@@ -16,12 +16,13 @@ E usar a Plataform PaaS [Render][0] para fazer o deploy.
 - [ ] Implementar Testes integrados.
 - [ ] Implementar Documentação com Open API. 
 - [x] Usar GitHub Actions para fazer o Build e Test.
-- [ ] Adicionar logs usando [slog](https://go.dev/blog/slog).
+- [ ] Adicionar logs usando [slog][6].
 
 ## Stack
 - [Golang][1]
 - [GORM ORM][3]
 - [PostgreSQL][2]
+- [Slog][6]
 - [Render PassS][0]
 - [Docker][5]
 
@@ -50,5 +51,6 @@ go run main .
 [3]: https://gorm.cn/
 [4]: https://alistair.cockburn.us/hexagonal-architecture/
 [5]: https://www.docker.com/
+[6]: https://go.dev/blog/slog
 
 
