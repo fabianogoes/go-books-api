@@ -23,7 +23,7 @@ E usar a Plataform PaaS [Render][0] para fazer o deploy.
 - [GORM ORM][3]
 - [PostgreSQL][2]
 - [Slog][6]
-- [Render PassS][0]
+- [Render PaaS][0]
 - [Docker][5]
 
 ## Running
